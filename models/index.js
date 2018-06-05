@@ -30,6 +30,9 @@ sequelize.import(path.join(__dirname,'session'));
 
 const {quiz, tip, user} = sequelize.models;
 
+tip.belongsTo(user,  {as: 'author', foreignKey: 'authorId'});
+user.hasMany(tip, {foreignKey: 'authorId'});
+
 tip.belongsTo(quiz);
 quiz.hasMany(tip);
 
